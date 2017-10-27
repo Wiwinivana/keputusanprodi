@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\Helpers\ArrayHelper;
 use yii\helpers\Html;
+use app\models\User;
 
 /**
  * This is the model class for table "siswa".
@@ -23,6 +24,9 @@ use yii\helpers\Html;
  */
 class Siswa extends \yii\db\ActiveRecord
 {
+    public $username;
+    public $password;
+    public $password_konfirmasi;
     /**
      * @inheritdoc
      */
@@ -37,7 +41,7 @@ class Siswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nomorpeserta', 'nama', 'id_jeniskelamin', 'tanggal_lahir', 'email', 'create_at'], 'required'],
+            [['nomorpeserta', 'nama', 'id_jeniskelamin', 'tanggal_lahir', 'email', 'create_at', 'username', 'password', 'password_konfirmasi'], 'required'],
             [['nomorpeserta', 'id_jeniskelamin', 'create_at'], 'integer'],
             [['tanggal_lahir'], 'safe'],
             [['nama', 'photo'], 'string', 'max' => 255],
@@ -100,5 +104,30 @@ class Siswa extends \yii\db\ActiveRecord
     public static function getCount()
     {
         return self::find()->count();
+    }
+
+    public function createUser()
+    {
+        $user = new User;
+        $user->username = $this->username;
+        $user->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+        $user->model = 'Siswa';
+        $user->nama_siswa = $this->id;
+        
+        $user->id_role = 2;
+
+        if ($user->save(false))
+            return true;
+        else
+                throw new \Exception("Error Processing Request".var_dump($user->errors), 400);
+            return true;
+    }
+
+    public function validatePassword($attribute, $params)
+    {
+        if($this->password != $this->password_konfirmasi)
+        {
+            $this->addError($attribute, 'Password konfirmasi tidak sesuai');
+        }
     }
 }

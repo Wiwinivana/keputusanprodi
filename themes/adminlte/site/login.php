@@ -44,9 +44,12 @@ $this->title = 'Login';
                     ]) ?>
             </div>
             <div class="col-xs-8">
-                <a href="../site/depan" class="text-center">Kembali Ke Home</a>
+            <?= Html::a('Kembali ke Home', ['depan'], ['class' => 'text-info']); ?>
+            </div>
+            <div class="col-xs-4">
+               <?= Html::a('Register', ['register'], ['class' => 'text-info']); ?>
+            </div>
 
-        </div>
 
     <?php ActiveForm::end(); ?>
     </div><!-- /.login-box-body -->

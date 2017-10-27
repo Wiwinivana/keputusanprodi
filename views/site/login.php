@@ -39,6 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 
+         <div class="row">
+            <div class="col-xs-6" style="text-align: left">
+                <?= Html::a('Kembali Ke Home', $url = \Yii::$app->urlManagerFrontEnd->baseUrl, ['class' => 'text-info']); ?>
+            </div>
+            <div class="col-xs-6" style="text-align: right">
+                <?= Html::a('Register', ['register'], ['class' => 'text-info']); ?>
+            </div>
+        </div>
+
     <?php ActiveForm::end(); ?>
 
     <div class="col-lg-offset-1" style="color:#999;">

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\Helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "soal_pilihan".

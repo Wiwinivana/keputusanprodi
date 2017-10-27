@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\SoalPilihan;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Soal */
@@ -34,3 +35,27 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Soal</th>
+            <th>Pilihan Jawaban</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tr>
+        <?php
+            $i=1;
+            foreach ($model->soalPilihans as $data) { ?>
+            <td><?= $i; ?></td>
+            <td><?= $data->idSoal->pertanyaan;?></td> <!-- fungsi->properti/field di model soalpilihan -->
+            <td><?= $data->pilihan;?></td>
+            <td><?= $data->status;?></td>
+    </tr>
+        <?php $i++; } ?>
+
+</table>
+<?php        
+?>

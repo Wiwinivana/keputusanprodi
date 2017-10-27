@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Siswa;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -96,6 +98,21 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    public function actionRegister()
+    {
+        $this->layout = 'login';
+
+        $model = new Siswa();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            $model->createUser();
+            return $this->redirect(['site/login']);
+        } else{
+            return $this->render('register',['model' => $model
+                ]);
+        }
     }
 
     /**
