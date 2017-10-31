@@ -36,6 +36,7 @@
                     ['label' => 'Pilihan Jawaban', 'icon' => '', 'url' => ['soal-pilihan/index'],],
                     ['label' => 'Siswa', 'icon' => 'user', 'url' => ['siswa/index'],],
                     ['label' => 'Jenis Kelamin', 'icon' => 'user', 'url' => ['jeniskelamin/index'],],
+                    ['label' => 'Tentang', 'icon' => '', 'url' => ['tentang/index'],],
                     ['label' => 'User', 'icon' => 'users', 'url' => ['user/index'],],
 
                     /*['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

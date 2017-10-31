@@ -154,4 +154,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionTentang()
+    {
+         $this->layout = 'tentang';
+            return $this->render('index');
+    }
 }
